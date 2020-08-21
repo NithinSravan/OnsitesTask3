@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Sen&display=swap');
+* {
+    font-family: 'Sen';
+    box-sizing: border-box;
+    user-select: none;
+    margin: 0 ;
+}
+#canvas{
+    display: block;
+    margin:0 auto;
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100vw;
+    border:1px solid #000;
+    height: 80vh;
+    background-color:rgb(255, 255, 255);
+} 
+button{
+   position: relative;
+   top: 85vh;
+   left: 10vw;
+   width: 15vw;
+   outline:none;
+   border: none;
+   background-color: rgb(123, 241, 55);
+   font-size: 1.1em;
+   padding:10px 5px;
+}
+#stop{
+    background-color: rgb(241, 55, 64);
+}
