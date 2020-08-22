@@ -15,7 +15,7 @@ window.onload = function () {
     rows =canvas.height/3;
     window.addEventListener('click', clicked)
     createGrid();
-    gameLoop();
+    game();
 }
 let mouse = {
     x: undefined,
@@ -44,7 +44,7 @@ class Cell
         this.side = canvas.width/140;
         this.x= x;
         this.y = y;
-        this.alive = false;
+        this.alive = 0;
         this.tempState;
     }
 
@@ -63,9 +63,9 @@ class Cell
   
         if ((mouse.x >= this.x* this.side) && (mouse.y >= this.y * this.side) && (mouse.x < this.x*this.side + this.side) && (mouse.y <  this.y * this.side + this.side)) {
            if(!this.alive)
-            this.alive=true;
+            this.alive=1;
             else
-            this.alive=false;
+            this.alive=0;
         }
     }
 }
@@ -85,10 +85,7 @@ function checkState(x, y)
     if (x < 0 || x >=columns || y < 0 || y >=rows){
         return 0;
     }
-    if(cells[ x + y * columns].alive)
-    return 1;
-    else
-    return 0;
+    return cells[x+(y*columns)].alive;
 }
 
 function checkNeighbours ()
@@ -103,9 +100,9 @@ function checkNeighbours ()
             if (aliveNeighbours == 2){
                 cells[index].tempState = cells[index].alive;
             }else if (aliveNeighbours == 3){
-                cells[index].tempState = true;
+                cells[index].tempState = 1;
             }else{
-                cells[index].tempState = false;
+                cells[index].tempState = 0;
             }
         }
     }
@@ -122,7 +119,7 @@ function stop(){
     begin=false;
 }
 
-function gameLoop() {
+function game() {
     loop= setInterval( () => {
     if(begin)
         checkNeighbours();
